@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 ### create administrator
-#User.create(email: "admin@encuestas.com", user_type: "admin", password: "12345678", password_confirmation: "12345678")
+User.create(email: "admin@encuestas.com", user_type: "admin", password: "12345678", password_confirmation: "12345678")
 
 Role.create(name: "Iberia")
 Role.create(name: "Vueling")
