@@ -9,7 +9,14 @@
       <% end %>
     </ul>
   <% end %>
-  
+
+  <%= f.label "Roles" %><br />
+  <% Rapidfire::Role.all.each do |role| %>
+      <%= check_box_tag 'question_group[role_ids][]', role.id,
+          @question_group.role_ids.include?(role.id), id: dom_id(role) %>
+      <%= label_tag dom_id(role), role.name, class: "check_box_label" %>
+  <% end %><br />
+
 
   <%= f.label :name %>
   <%= f.text_field :name %>

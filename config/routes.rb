@@ -1,5 +1,9 @@
 Encuestas::Application.routes.draw do
 
+  #namespace :rapidfire do
+  #  resources :roles
+  #end
+
   #resources :question_groups do
   #  get 'results', on: :member
 
