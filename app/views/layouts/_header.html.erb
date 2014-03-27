@@ -5,7 +5,7 @@
             <a class="blog-nav-item" href="#">About</a>
 
             <% unless user_signed_in? %>
-                <%= link_to 'Register', main_app.new_user_registration_path, class: "blog-nav-item" %>
+                <%# link_to 'Register', main_app.new_user_registration_path, class: "blog-nav-item" %>
                 <%= link_to 'Login', main_app.new_user_session_path, class: "blog-nav-item" %>
             <% else %>
                 <%= link_to "Roles", main_app.roles_path, class: "blog-nav-item" %>
