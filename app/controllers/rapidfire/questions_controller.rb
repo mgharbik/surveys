@@ -2,6 +2,7 @@ module Rapidfire
   class QuestionsController < Rapidfire::ApplicationController
     before_filter :authenticate_administrator!
     respond_to :html, :js
+    before_action :authenticate_user!, all:
 
     before_filter :find_question_group!
     before_filter :find_question!, :only => [:edit, :update, :destroy]

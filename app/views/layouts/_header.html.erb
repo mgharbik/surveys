@@ -1,17 +1,18 @@
 <div class="blog-masthead">
     <div class="container">
         <nav class="blog-nav">
-            <%= link_to 'Home', root_path, class: "blog-nav-item active" %>
-            <a class="blog-nav-item" href="#">About</a>
 
             <% unless user_signed_in? %>
                 <%# link_to 'Register', main_app.new_user_registration_path, class: "blog-nav-item" %>
                 <%= link_to 'Login', main_app.new_user_session_path, class: "blog-nav-item" %>
             <% else %>
-                <%= link_to "Roles", main_app.roles_path, class: "blog-nav-item" %>
                 <%= link_to "Encuestas", rapidfire.question_groups_path, class: "blog-nav-item" %>
+                <% if can_administer? %>
+                    <%= link_to "Roles", main_app.roles_path, class: "blog-nav-item" %> 
+                <% end %>
                 <%= link_to "Log out", main_app.destroy_user_session_path, method: :delete,  class: "blog-nav-item" %>
             <% end %>
+            <a class="blog-nav-item pull-right" href="#">About</a>
 
         </nav>
     </div>
