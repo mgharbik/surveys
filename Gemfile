@@ -12,6 +12,12 @@ gem 'rapidfire'
 ### Use devise for authentication
 gem 'devise'
 
+### Use bootstrap-sass for design
+gem 'bootstrap-sass'
+
+### Use will_paginate to separate listings by pages
+gem 'will_paginate'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

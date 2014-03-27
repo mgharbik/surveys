@@ -8,3 +8,4 @@
 
 ### create administrator
 User.create(email: "admin@encuestas.com", user_type: "admin", password: "12345678", password_confirmation: "12345678")
+

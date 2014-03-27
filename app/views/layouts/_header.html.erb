@@ -1,0 +1,18 @@
+<div class="blog-masthead">
+    <div class="container">
+        <nav class="blog-nav">
+            <%= link_to 'Home', root_path, class: "blog-nav-item active" %>
+            <a class="blog-nav-item" href="#">How it works</a>
+            <a class="blog-nav-item" href="#">About</a>
+
+            <% if user_signed_in? %>
+                <%# link_to 'Register', new_user_registration_path, class: "blog-nav-item" %>
+                <%# link_to 'Login', new_user_session_path, class: "blog-nav-item" %>
+            <% else %>
+                <%= link_to "Encuestas", question_groups_path, class: "blog-nav-item" %>
+                <%# link_to "Log out", destroy_user_session_path, method: :delete,  class: "blog-nav-item" %>
+            <% end %>
+
+        </nav>
+    </div>
+</div>
