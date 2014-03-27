@@ -9,6 +9,9 @@ gem 'sqlite3'
 ## Use rapidfire for the surveys
 gem 'rapidfire'
 
+### Use devise for authentication
+gem 'devise'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
