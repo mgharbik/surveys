@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327112211) do
+ActiveRecord::Schema.define(version: 20140327142835) do
 
   create_table "rapidfire_answer_groups", force: true do |t|
     t.integer  "question_group_id"
@@ -41,6 +41,11 @@ ActiveRecord::Schema.define(version: 20140327112211) do
     t.datetime "updated_at"
   end
 
+  create_table "rapidfire_question_groups_roles", force: true do |t|
+    t.integer "role_id"
+    t.integer "question_group_id"
+  end
+
   create_table "rapidfire_questions", force: true do |t|
     t.integer  "question_group_id"
     t.string   "type"
@@ -54,15 +59,10 @@ ActiveRecord::Schema.define(version: 20140327112211) do
 
   add_index "rapidfire_questions", ["question_group_id"], name: "index_rapidfire_questions_on_question_group_id"
 
-  create_table "roles", force: true do |t|
+  create_table "rapidfire_roles", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "roles_surveys", force: true do |t|
-    t.integer "role_id"
-    t.integer "question_group_id"
   end
 
   create_table "users", force: true do |t|
