@@ -1,6 +1,7 @@
-<h3><%= question_group.new_record? ? "New Group" : "Edit Group" %></h3>
+<h3><%= question_group.new_record? ? "Nueva Encuesta" : "Editar Encuesta" %></h3>
 
 <%= form_for question_group do |f| %>
+
   <%- if question_group.errors.any? %>
     <ul>
       <%- question_group.errors.full_messages.each do |message| %>
@@ -9,7 +10,11 @@
     </ul>
   <% end %>
 
+
+
   <%= f.label :name %>
   <%= f.text_field :name %>
+
   <%= f.submit %>
+  
 <% end %>
