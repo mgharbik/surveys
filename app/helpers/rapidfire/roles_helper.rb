@@ -1,2 +1,0 @@
-module Rapidfire::RolesHelper
-end

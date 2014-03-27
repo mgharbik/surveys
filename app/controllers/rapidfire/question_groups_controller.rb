@@ -14,9 +14,21 @@ module Rapidfire
       respond_with(@question_group)
     end
 
+    def edit
+      @question_group = QuestionGroup.find(params[:id])
+      respond_with(@question_group)
+    end
+
     def create
       @question_group = QuestionGroup.new(question_group_params)
       @question_group.save
+
+      respond_with(@question_group, location: rapidfire.question_groups_url)
+    end
+
+    def update
+      @question_group = QuestionGroup.find(params[:id])
+      @question_group.update(question_group_params)
 
       respond_with(@question_group, location: rapidfire.question_groups_url)
     end

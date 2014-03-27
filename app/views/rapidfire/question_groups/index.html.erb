@@ -1,19 +1,23 @@
 <h2>
-  Question Groups
+  Encuestas
   <% if can_administer? %>
-    <%= link_to "New Group", new_question_group_path %>
+    <%= link_to "Nueva Encuestas", new_question_group_path, class: 'btn btn-success' %>
   <% end %>
 </h2>
 <hr/>
 
-<table>
+<table class="table">
   <colgroup>
     <col>
     <col width="250">
   </colgroup>
   <thead>
     <tr>
-      <th>Question Group</th>
+      <th>Nombre de encuesta</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
       <th></th>
     </tr>
   </thead>
