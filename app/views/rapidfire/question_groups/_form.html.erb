@@ -1,4 +1,4 @@
-<h3><%= question_group.new_record? ? "Nueva Encuesta" : "Editar Encuesta" %></h3>
+<h3><%= question_group.new_record? ? "Nueva Encuesta" : "Editar Encuesta" %></h3><br />
 
 <%= form_for question_group do |f| %>
 
@@ -10,17 +10,18 @@
     </ul>
   <% end %>
 
-  <%= f.label "Roles" %><br />
-  <% Rapidfire::Role.all.each do |role| %>
+  <%= f.label "Roles: " %><br />
+  <% Role.all.each do |role| %>
       <%= check_box_tag 'question_group[role_ids][]', role.id,
           @question_group.role_ids.include?(role.id), id: dom_id(role) %>
       <%= label_tag dom_id(role), role.name, class: "check_box_label" %>
-  <% end %><br />
+  <% end %><br /><br />
 
 
-  <%= f.label :name %>
+  <%= f.label :name, 'Encuesta: ' %><br />
   <%= f.text_field :name %>
 
-  <%= f.submit %>
+  <br /><br />
+  <%= f.submit 'Crear' %>
 
 <% end %>

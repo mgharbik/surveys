@@ -6,12 +6,12 @@
             <a class="blog-nav-item" href="#">About</a>
 
             <% unless user_signed_in? %>
-                <%# link_to 'Register', new_user_registration_path, class: "blog-nav-item" %>
-                <%# link_to 'Login', new_user_session_path, class: "blog-nav-item" %>
+                <%= link_to 'Register', main_app.new_user_registration_path, class: "blog-nav-item" %>
+                <%= link_to 'Login', main_app.new_user_session_path, class: "blog-nav-item" %>
             <% else %>
-                <%# link_to "Roles", roles_path, class: "blog-nav-item" %>
+                <%= link_to "Roles", main_app.roles_path, class: "blog-nav-item" %>
                 <%# link_to "Encuestas", question_groups_path, class: "blog-nav-item" %>
-                <%# link_to "Log out", destroy_user_session_path, method: :delete,  class: "blog-nav-item" %>
+                <%= link_to "Log out", main_app.destroy_user_session_path, method: :delete,  class: "blog-nav-item" %>
             <% end %>
 
         </nav>
