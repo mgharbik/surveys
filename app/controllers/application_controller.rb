@@ -24,9 +24,14 @@ class ApplicationController < ActionController::Base
     end
 
 
+    def store_location
+        session[:return_to] = request.url if request.get?
+    end
+
     def authorize_only_voter!
         unless can_vote?
-            redirect_to main_app.root_path, alert: "You don't have authorization to this page. Please login"
+            store_location
+            redirect_to main_app.login_path, alert: "You don't have authorization to this page. Please login"
         end   
     end
 
