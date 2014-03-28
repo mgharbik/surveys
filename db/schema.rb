@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328182933) do
+ActiveRecord::Schema.define(version: 20140328232521) do
 
   create_table "rapidfire_answer_groups", force: true do |t|
     t.integer  "question_group_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140328182933) do
     t.string   "user_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username"
   end
 
   add_index "rapidfire_answer_groups", ["question_group_id"], name: "index_rapidfire_answer_groups_on_question_group_id"
@@ -88,5 +89,10 @@ ActiveRecord::Schema.define(version: 20140328182933) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "votings", force: true do |t|
+    t.integer "asnwer_group_id"
+    t.string  "username"
+  end
 
 end
