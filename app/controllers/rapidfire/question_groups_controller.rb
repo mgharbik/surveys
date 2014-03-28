@@ -1,12 +1,24 @@
 module Rapidfire
   class QuestionGroupsController < Rapidfire::ApplicationController
-    before_action :authenticate_administrator!, except: :index
+    before_action :authorize_only_administrator!, except: :index
+    before_action :authorize_both_admin_and_voter!, only: :index
+
+
     respond_to :html, :js
     respond_to :json, only: :results
-    before_action :authenticate_user!, all:
 
     def index
-      @question_groups = QuestionGroup.all
+      if current_user
+        @question_groups = QuestionGroup.all
+      else
+        @question_groups = Array.new
+        role = Role.find_by_name(session[:role])
+        QuestionGroup.all.each do |survey|
+            if survey.roles.include?(role)
+              @question_groups << survey
+            end
+        end
+      end
       respond_with(@question_groups)
     end
 

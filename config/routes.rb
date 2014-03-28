@@ -1,9 +1,17 @@
 Encuestas::Application.routes.draw do
+	get "pages/about"
+  	match "about", to: "pages#about", via: [:get]
 
-  resources :roles
-  devise_for :users
+	controller :authentications do
+	    get 'login' => :new
+	    post 'login' => :create
+	    delete 'logout' => :destroy
+  	end
 
-  mount Rapidfire::Engine => "/rapidfire"
-  root to: "rapidfire/question_groups#index"
+  	resources :roles
+  	devise_for :users
+
+  	mount Rapidfire::Engine => "/rapidfire"
+  	root to: "rapidfire/question_groups#index"
 
 end
