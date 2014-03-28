@@ -12,13 +12,13 @@ class ApplicationController < ActionController::Base
 
   	def authenticate_user?
   		unless can_vote?
-        	redirect_to main_app.root_path, alert: "You don't have authorization to this page. Please login"
+        	redirect_to main_app.login_path, alert: "You don't have authorization to this page. Please login"
       end
   	end
 
     def authenticate_administrator!
     	unless can_administer?
-        	redirect_to main_app.root_path, alert: "You don't have authorization to this page. Please login"
+        	redirect_to main_app.login_path, alert: "You don't have authorization to this page. Please login"
         	#raise Rapidfire::AccessDenied.new("cannot administer questions")
       	end
     end
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
 
     def authorize_both_admin_and_voter!
         unless can_administer? || can_vote?
-            redirect_to main_app.root_path, alert: "You don't have authorization to this page. Please login"
+            redirect_to main_app.login_path, alert: "You don't have authorization to this page. Please login"
             #raise Rapidfire::AccessDenied.new("cannot administer questions")
         end
     end

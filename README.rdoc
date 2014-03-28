@@ -6,6 +6,10 @@
 
 - rake db:seed
 
-- To log in as admin try : admin@encuestas.com/12345678
+- To log in as user, try any email and password, will take you in
 
-- To sign uo for new normal user try it in: localhost:3000/users/sign_up
+
+- To log in as admin, go to localhost:3000/users/sign_up
+
+- and try: admin@encuestas.com/12345678
+
