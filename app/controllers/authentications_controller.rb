@@ -8,9 +8,10 @@ class AuthenticationsController < ApplicationController
 		# 2. si devuelve ok+role
 		uri = URI.parse("http://www.sepla.es/pages/API/index.php?request=login")
 		response = Net::HTTP.post_form(uri, {"email" => params[:email], "password" => params[:password]})
-		data = JSON.parse(response.body)
+		
 
-		unless data["seccion_sindical"].nil? 
+		unless response.body.nil? || JSON.parse(response.body)["seccion_sindical"].nil?
+			data = JSON.parse(response.body)
 			# guadamos su rol en session
 			session[:role] = data["seccion_sindical"] 
 			# guardamos su username en session
