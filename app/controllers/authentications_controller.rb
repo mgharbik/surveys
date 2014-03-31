@@ -6,11 +6,15 @@ class AuthenticationsController < ApplicationController
   	def create
 	  	# 1. mandamos a los servicios email/pass
 		# 2. si devuelve ok+role
-		if true 
+		uri = URI.parse("http://www.sepla.es/pages/API/index.php?request=login")
+		response = Net::HTTP.post_form(uri, {"email" => params[:email], "password" => params[:password]})
+		data = JSON.parse(response.body)
+
+		unless data["seccion_sindical"].nil? 
 			# guadamos su rol en session
-			session[:role] = 'Iberia'
+			session[:role] = data["seccion_sindical"] 
 			# guardamos su username en session
-			session[:username] = params[:email]
+			session[:username] = data["email"] 
 			#redirect_to rapidfire.question_groups_path, notice: "You're logged in"
 			redirect_back_or rapidfire.question_groups_path
 			flash[:notice] = "You're logged in"
@@ -34,6 +38,6 @@ class AuthenticationsController < ApplicationController
 	    redirect_to(session[:return_to] || default)
 	    session.delete(:return_to)
 	end
-	
+
 
 end

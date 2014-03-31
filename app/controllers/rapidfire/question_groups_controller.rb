@@ -13,10 +13,14 @@ module Rapidfire
       else
         @question_groups = Array.new
         role = Role.find_by_name(session[:role])
-        QuestionGroup.all.each do |survey|
-            if survey.roles.include?(role)
-              @question_groups << survey
-            end
+        unless role.nil?
+          QuestionGroup.all.each do |survey|
+              if survey.roles.include?(role)
+                @question_groups << survey
+              end
+          end
+        else
+          flash[:alert] = "No hay ningun role #{session[:role]} en la base de datos"
         end
       end
       respond_with(@question_groups)

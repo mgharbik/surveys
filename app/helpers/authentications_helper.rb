@@ -1,5 +1,6 @@
 module AuthenticationsHelper
-		
+	require "net/http"
+  require "uri"
   #def sign_in(user)
   #  session[:user_id] = user.id
   #end
