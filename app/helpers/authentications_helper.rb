@@ -1,32 +1,8 @@
 module AuthenticationsHelper
 	require "net/http"
   require "uri"
-  #def sign_in(user)
-  #  session[:user_id] = user.id
-  #end
 
-  #def sign_out
-  #  session[:user_id] = nil
-  #end
-
-  #def signed_in?
-  #  !session[:user_id].nil?
-  #end
-
-  #def current_user=(user)
-  #  @current_user = user
-  #end
-
-  #def current_user
-  #  @current_user ||= User.find(session[:user_id])
-  #end
-
-  #def current_user?(user)
-  #  user == current_user
-  #end
-
-
-	def can_vote?
+	  def can_vote?
     	session[:role] && session[:username]
     end
 

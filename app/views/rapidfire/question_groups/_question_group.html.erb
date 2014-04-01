@@ -1,20 +1,22 @@
 <tr id= "question_group_<%= question_group.id %>">
-  <td>
-    <% if can_administer? %>
-      <%= link_to question_group.name, question_group_questions_path(question_group) %>
-    <% else %>
-      <%= question_group.name %>
-    <% end %>
-  </td>
 
-  <td><%= question_group.roles.map { |m| m.name } %></td>
+  <td><%= question_group.name %></td>
 
-  <td><%= link_to "Answer Questions", new_question_group_answer_group_path(question_group) %></td>
 
   <% if can_administer? %> 
-        <td><%= link_to "Results", [:results, question_group] %></td>
-        <td><%= link_to "Edit", edit_question_group_path(question_group) %></td>
-        <td><%= link_to "Delete", [question_group], method: :delete %></td>
+       <td><%= question_group.roles.map { |m| m.name } %></td>
+       <td><%= link_to "Preguntas", question_group_questions_path(question_group) %></td>
+        <td><%= link_to "Resultados", [:results, question_group] %></td>
+        <td><%= link_to "Editar", edit_question_group_path(question_group) %></td>
+        <td><%= link_to "Borrar", [question_group], method: :delete %></td>
+  <% else %>
+        <td>
+          <% unless Voting.find_by_asnwer_group_id_and_username(question_group.id, session[:username]).nil? %>
+            Votado
+          <% else %>
+            <%= link_to "Votar", new_question_group_answer_group_path(question_group), class: 'btn btn-success' %>
+          <% end %>
+        </td>
   <% end %>
 
 </tr>
