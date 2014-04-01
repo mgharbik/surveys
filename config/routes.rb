@@ -9,7 +9,7 @@ Encuestas::Application.routes.draw do
   	end
 
   	resources :roles
-  	devise_for :users
+    devise_for :users, controllers: {registrations: 'registrations'}
 
   	mount Rapidfire::Engine => "/panel"
   	root to: "rapidfire/question_groups#index"

@@ -55,4 +55,9 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def access_denied
+        redirect_to main_app.root_path, alert: "No hay accesso a esta página!"
+    end
+
+
 end
