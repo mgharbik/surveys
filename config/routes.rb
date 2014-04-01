@@ -11,7 +11,7 @@ Encuestas::Application.routes.draw do
   	resources :roles
   	devise_for :users
 
-  	mount Rapidfire::Engine => "/rapidfire"
+  	mount Rapidfire::Engine => "/panel"
   	root to: "rapidfire/question_groups#index"
 
 end
