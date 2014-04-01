@@ -55,6 +55,10 @@ class RolesController < ApplicationController
   # DELETE /roles/1
   # DELETE /roles/1.json
   def destroy
+    @question_groups = @role.question_groups
+    @question_groups.each do |question_group|
+      question_group.roles.where(id: @role.id).clear
+    end
     @role.destroy
     respond_to do |format|
       format.html { redirect_to roles_url }
