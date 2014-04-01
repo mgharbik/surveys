@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
     def can_administer?
       # current_user.user_type == "admin"
-      current_user.try(:user_type) == "admin" && current_user.try(:email) == "admin@encuestas.com"
+      current_user.try(:user_type) == "admin"
     end
 
   	def authenticate_user?
@@ -46,6 +46,12 @@ class ApplicationController < ActionController::Base
         unless can_administer? || can_vote?
             redirect_to main_app.login_path #, alert: "You don't have authorization to this page. Please login"
             #raise Rapidfire::AccessDenied.new("cannot administer questions")
+        end
+    end
+
+    def no_user_connected!
+        if can_administer? || can_vote?
+            redirect_to main_app.root_path, alert: "Ya estas connectado!"
         end
     end
 

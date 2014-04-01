@@ -1,4 +1,5 @@
 class AuthenticationsController < ApplicationController
+	before_action :no_user_connected!, only: [:new, :create]
 
   	def new
   	end
