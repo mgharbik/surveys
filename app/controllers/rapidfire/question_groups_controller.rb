@@ -1,17 +1,17 @@
 module Rapidfire
   class QuestionGroupsController < Rapidfire::ApplicationController
     before_action :authorize_only_administrator!, except: :index
-    before_action :authorize_both_admin_and_voter!, only: :index
+    #before_action :authorize_both_admin_and_voter!, only: :index
 
 
     respond_to :html, :js
     respond_to :json, only: :results
 
     def index
+      @question_groups = Array.new
       if current_user
         @question_groups = QuestionGroup.all
-      else
-        @question_groups = Array.new
+      else 
         role = Role.find_by_name(session[:role])
         unless role.nil?
           QuestionGroup.all.each do |survey|
@@ -21,6 +21,10 @@ module Rapidfire
           end
         else
           flash[:alert] = "No hay ningun role #{session[:role]} en la base de datos"
+        end
+
+        QuestionGroup.where(survey_type: "public").each do |s|
+          @question_groups << s
         end
       end
       respond_with(@question_groups)
@@ -68,7 +72,7 @@ module Rapidfire
     private
     def question_group_params
       if Rails::VERSION::MAJOR == 4
-        params.require(:question_group).permit(:name, :role_ids => [])
+        params.require(:question_group).permit(:name, :survey_type, :role_ids => [])
       else
         params[:question_group]
       end

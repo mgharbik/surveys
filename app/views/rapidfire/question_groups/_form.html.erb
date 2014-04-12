@@ -21,7 +21,10 @@
   <%= f.label :name, 'Encuesta: ' %><br />
   <%= f.text_field :name %>
 
+  <%= f.label :survey_type, "Tipo encuesta" %>
+  <%= f.select :survey_type, options_for_select([['Privado', 'private'], ['Publico', 'public']]) %>
+
   <br /><br />
-  <%= f.submit 'Crear' %>
+  <%= f.submit question_group.new_record? ? "Crear" : "Editar" %>
 
 <% end %>

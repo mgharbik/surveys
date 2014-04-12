@@ -3,7 +3,7 @@ module Rapidfire
     before_filter :find_question_group!
     before_filter :was_already_voted, only: [:create]
 
-    before_action :authorize_only_voter!
+    #before_action :authorize_only_voter!
     #before_action :authorize_both_admin_and_voter!
 
     def new

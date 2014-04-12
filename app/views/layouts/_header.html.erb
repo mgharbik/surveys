@@ -1,6 +1,8 @@
 <div class="blog-masthead">
     <div class="container">
         <nav class="blog-nav">
+            
+            <%= link_to "Encuestas", rapidfire.question_groups_path, class: "blog-nav-item" %>
 
             <% unless user_signed_in? || can_vote? %>
                 <%# link_to 'Register', main_app.new_user_registration_path, class: "blog-nav-item" %>
@@ -8,13 +10,11 @@
                 <%= link_to "Panel de administración", main_app.new_user_session_path, class: "blog-nav-item pull-right" %>
             <% else %>           
                 <% if can_administer? %>
-                    <%= link_to "Encuestas", rapidfire.question_groups_path, class: "blog-nav-item" %>
                     <%= link_to "Roles", main_app.roles_path, class: "blog-nav-item" %> 
                     <%= link_to "Log out", main_app.destroy_user_session_path, method: :delete,  class: "blog-nav-item" %>
                 <% end %>
 
                 <% if can_vote? %>
-                    <%= link_to "Encuestas", rapidfire.question_groups_path, class: "blog-nav-item" %>
                     <%= link_to "Log out", main_app.logout_path, method: :delete,  class: "blog-nav-item" %>
                 <% end %>
             <% end %>
